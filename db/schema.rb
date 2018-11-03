@@ -10,13 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_24_070537) do
+ActiveRecord::Schema.define(version: 2018_11_03_205359) do
 
   create_table "applicants", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "first_name", default: "", null: false
     t.string "last_name", default: "", null: false
+    t.string "venmo_user_id", default: "", null: false
+    t.string "zip", null: false
+    t.string "tags"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -31,6 +34,9 @@ ActiveRecord::Schema.define(version: 2018_10_24_070537) do
     t.string "encrypted_password", default: "", null: false
     t.string "first_name", default: "", null: false
     t.string "last_name", default: "", null: false
+    t.string "venmo_user_id", default: "", null: false
+    t.string "zip", null: false
+    t.string "tags"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -51,6 +57,17 @@ ActiveRecord::Schema.define(version: 2018_10_24_070537) do
     t.string "title", null: false
     t.text "description", null: false
     t.integer "employer_id", null: false
+    t.string "duration", null: false
+    t.integer "location", null: false
+    t.date "date", null: false
+    t.integer "pay", null: false
+    t.string "tags"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
