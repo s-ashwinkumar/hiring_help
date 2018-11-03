@@ -1,0 +1,5 @@
+<% [:notice, :alert].each do |message| %>
+  <% if send(message).present? %>
+    <%= render "shared/#{message.to_s}", message: send(message) %>
+  <% end %>
+<% end %>

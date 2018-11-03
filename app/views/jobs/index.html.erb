@@ -1,0 +1,47 @@
+<div class="container">
+  <br>
+  <%= render 'shared/messages' %>
+
+  <h1>Jobs</h1>
+  <% unless applicant_signed_in? %>
+    <%= link_to 'Create New Job Post', new_job_path %>
+  <% end %>
+  <br>
+  <br>
+  <% if @jobs.present? %>
+    <table class="table ">
+      <thead>
+      <tr>
+        <th > Title </th>
+        <th > Show </th>
+        <% if employer_signed_in? %>
+          <th > Edit </th>
+          <th > Destroy </th>
+        <% else %>
+          <th> Employer </th>
+          <th > Status </th>
+        <% end %>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @jobs.each do |job| %>
+        <tr>
+          <td><%= job.title %> </td>
+          <td colspan="1"><%= link_to 'Show', job %></td>
+
+          <% if employer_signed_in? %>
+            <td colspan="1"><%= link_to 'Edit', edit_job_path(job) %></td>
+            <td colspan="1"><%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% else %>
+            <td colspan="1"><%= job.employer_name %></td>
+            <td colspan="1"><%= get_badge(job) %></td>
+          <% end %>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    No Jobs available right now.
+  <% end %>
+</div>

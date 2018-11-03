@@ -1,0 +1,28 @@
+<br>
+<br>
+
+<div class="container">
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <div class="row">
+        <div class="col text-center">
+          <%= button_to "Signup As Employer", new_employer_registration_path, class: "btn btn-primary btn-lg", :method => :get  %>
+        </div>
+        <div class="col text-center">
+          <%= button_to "Signup As Applicant", new_applicant_registration_path, class: "btn btn-primary btn-lg", :method => :get  %>
+        </div>
+      </div>
+      <br>
+      <br>
+      <div class="row">
+
+        <div class="col text-center">
+          <%= button_to "Sign In As Employer", new_employer_session_path, class: "btn btn-primary btn-lg", :method => :get  %>
+        </div>
+        <div class="col text-center">
+          <%= button_to "Sign In As Applicant", new_applicant_session_path, class: "btn btn-primary btn-lg", :method => :get  %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
