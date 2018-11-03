@@ -8,6 +8,9 @@ class DeviseCreateApplicants < ActiveRecord::Migration[5.2]
       t.string :encrypted_password, null: false, default: ""
       t.string :first_name,              null: false, default: ""
       t.string :last_name,              null: false, default: ""
+      t.string :venmo_user_id, null: false, default: ""
+      t.string :zip, null: false
+      t.string :tags, default: [], array: true
       ## Recoverable
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at
