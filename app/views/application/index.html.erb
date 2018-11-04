@@ -1,28 +1,59 @@
-<br>
-<br>
 
-<div class="container">
-  <div class="jumbotron jumbotron-fluid">
-    <div class="container">
-      <div class="row">
-        <div class="col text-center">
-          <%= button_to "Signup As Employer", new_employer_registration_path, class: "btn btn-primary btn-lg", :method => :get  %>
-        </div>
-        <div class="col text-center">
-          <%= button_to "Signup As Applicant", new_applicant_registration_path, class: "btn btn-primary btn-lg", :method => :get  %>
-        </div>
-      </div>
-      <br>
-      <br>
-      <div class="row">
 
-        <div class="col text-center">
-          <%= button_to "Sign In As Employer", new_employer_session_path, class: "btn btn-primary btn-lg", :method => :get  %>
+      <main class="mdl-layout__content">
+        <div class="page-content">
+          <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+              <div class="mdl-grid">
+                <div id="ccc">
+                  Connect
+                  <br>
+                  Collaboarate
+                  <br>
+                  Create
+                </div>
+              </div>
+              <div class="mdl-grid"></div>
+              <div class="mdl-grid"></div>
+              <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+                  <span>
+                    <h3>
+                      Hire
+                    </h3>
+                    <h5>
+                      Find a local to get the job done
+                    </h5>
+                    <br>
+                    <br>
+                    <button class="mdl-button mdl-js-button">
+                      Signup to Hire
+                    </button>
+                  </span>
+                </div>
+                <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+                  <span>
+                    <h3>
+                      Get hired
+                    </h3>
+                    <h5>
+                      Get payed to help out
+                    </h5>
+                    <br>
+                    <br>
+                    <button class="mdl-button mdl-js-button">
+                      Signup to get hired
+                    </button>
+
+                  </span>
+                  
+                </div>
+              </div>
+
+            </div>
+            <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+              <%= image_tag("https://66.media.tumblr.com/6c1b44e1453e9bb0084f3e4699184e30/tumblr_mk9x0nCJ3J1s1aqajo1_500.gif") %>
+            </div>
+          </div>
         </div>
-        <div class="col text-center">
-          <%= button_to "Sign In As Applicant", new_applicant_session_path, class: "btn btn-primary btn-lg", :method => :get  %>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+      </main>

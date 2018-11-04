@@ -43,6 +43,12 @@ gem 'devise'
 gem 'devise-bootstrapped', github: 'king601/devise-bootstrapped', branch: 'bootstrap4'
 gem 'acts-as-taggable-on', '~> 6.0'
 gem 'bootstrap-datepicker-rails'
+gem 'quickbooks-ruby'
+gem 'oauth-plugin'
+
+
+
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
