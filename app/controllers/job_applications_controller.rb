@@ -24,6 +24,19 @@ class JobApplicationsController < ApplicationController
     job_application.save!
   end
 
+  def start_job
+    job_application.status = 'Started'
+    job_application.job.job_applications.each do |app|
+      app.update_attribute(:status, 'Declined')
+    end
+    job_application.save!
+  end
+
+  def finish_job
+    job_application.status = 'Finished'
+    job_application.save!
+  end
+
   def send_message
     Message.send!(to: @job_application.applicant.phone_number, text: params[:message] )
   end

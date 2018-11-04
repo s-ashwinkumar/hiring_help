@@ -30,16 +30,17 @@
           <tr>
             <td style='font-size: large;padding-top: 16px;'><a href="/applicants/profile"><%= application.applicant.full_name %></a></td>
             <td>
-              <% if  application.processed? %>
-                <%= button_tag "Started", id: "job_accept", job_application_id: application.id, class: "btn btn-sm btn-success"%>
-
-            <%else %>
-                <%= button_tag "Accept", id: "job_accept", job_application_id: application.id, class: "btn btn-sm btn-success"%>
-                <%= button_tag "Decline", id: "job_decline", job_application_id: application.id, class: "btn btn-sm btn-danger"%>
-            <%end %>
-              </td>
+              <% if  application.ready_to_start? %>
+                <%= button_tag "Start", id: "job_start", job_application_id: application.id, class: "btn btn-sm btn-primary"%>
+              <% elsif  application.started? || application.finished?%>
+                <%= button_tag "Finish", id: "job_finish", job_application_id: application.id, class: "btn btn-sm btn-warning", disabled: application.finished?%>
+              <% else %>
+                <%= button_tag "Accept", id: "job_accept", job_application_id: application.id, class: "btn btn-sm btn-success", disabled: application.declined?%>
+                <%= button_tag "Decline", id: "job_decline", job_application_id: application.id, class: "btn btn-sm btn-danger", disabled: application.declined?%>
+              <%end %>
+            </td>
             <td>
-              <%= button_tag "Chat",id: "enable_chat", job_application_id: application.id, class: "btn btn-primary btn-sm", disabled: application.processed?%>
+              <%= button_tag "Chat",id: "enable_chat", job_application_id: application.id, class: "btn btn-primary btn-sm"%>
             </td>
           </tr>
         <% end %>

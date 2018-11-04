@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   get '/signup', to: 'application#signup', as: 'signup'
   post 'accept_application', to: 'job_applications#accept'
   post 'decline_application', to: 'job_applications#decline'
+  post 'start_job', to: 'job_applications#start_job'
+  post 'finish_job', to: 'job_applications#finish_job'
   get 'get_chat', to: 'messages#get_messages'
   post 'send_message', to: 'messages#push_message'
   post 'receive_message', to: 'messages#receive_message'

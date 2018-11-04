@@ -39,6 +39,28 @@ $( document ).ready(function() {
         });
     });
 
+    $('#job_start').click( function(){
+        $.ajax({
+            url: "/start_job",
+            type: "POST",
+            data: {
+                job_application_id: this.getAttribute('job_application_id')
+            },
+            success: function(resp){ if(!alert('Job Has been started! The contracts would be pushed to your Box account.')){window.location.reload();}}
+        });
+    });
+
+    $('#job_finish').click( function(){
+        $.ajax({
+            url: "/finish_job",
+            type: "POST",
+            data: {
+                job_application_id: this.getAttribute('job_application_id')
+            },
+            success: function(resp){ if(!alert('Wallah, congratulation on a job completion. We will take care of the paperwork !')){window.location.reload();}}
+        });
+    });
+
     $('#job_decline').click( function(){
         var that = this;
         $.ajax({
