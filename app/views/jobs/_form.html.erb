@@ -3,23 +3,29 @@
     <%= render 'shared/alert', locals: {message: "Couldn't create job" }  %>
   <% end %>
   <div class="form-group">
-    <%= form.text_field :title,  placeholder: 'Job Title', class: 'form-control' %>
+    <%= form.text_field :title,  placeholder: 'Gig Title', class: 'form-control' %>
   </div>
-
   <div class="form-group">
-    <%= form.text_field :location,  placeholder: 'Zipcode', class: 'form-control' %>
+    <%= form.text_area :description ,  placeholder: 'Gig Description', class: 'form-control' %>
   </div>
-
+  <div class="form-group">
+    <%= form.text_field :location, label: 'Zipcode of Location', placeholder: 'Zipcode', class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= form.text_field :date, value: (form.object.date || (Time.now + 7.days)).strftime("%m/%d/%Y"), class: 'form-control datepicker' %>
+  </div>
+  <div class="form-group">
+    <%= form.text_field :duration, placeholder: 'Duration with Units (5 hours)' , class: 'form-control' %>
+  </div>
   <div class="form-group">
     <%= form.text_field :pay,  placeholder: 'Job Pay', class: 'form-control' %>
   </div>
 
+
   <div class="form-group">
-    <%= form.text_field :tags,  placeholder: 'Tags', class: 'form-control' %>
+    <%= form.text_field :tag_list, label: 'Tags', class: 'form-control', 'data-role'=>'tagsinput' %>
   </div>
-  <div class="form-group">
-    <%= form.text_area :description ,  placeholder: 'Job Description', class: 'form-control' %>
-  </div>
+
   <%= form.hidden_field :employer_id, value: job.employer_id %>
   <div class="form-group">
     <%= form.submit "Submit Job", class: "btn btn-primary btn-block btn-lg"  %>

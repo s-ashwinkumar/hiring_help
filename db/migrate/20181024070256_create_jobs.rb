@@ -8,7 +8,6 @@ class CreateJobs < ActiveRecord::Migration[5.2]
       t.integer :location, null: false
       t.date :date, null: false
       t.integer :pay, null: false
-      t.string :tags, array: true, default: nil
       t.timestamps null: false
     end
   end
