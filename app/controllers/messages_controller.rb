@@ -1,17 +1,21 @@
 class MessagesController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: [:receive_message]
   def receive_message
-    byebug
     Message.receive!(
-      employer_id: current_employe.id,
-      applicant: Applicant.last,
-      text: params[:message]
+      employer: Employer.find_by_phone_number(params[:to]),
+      applicant: Applicant.find_by_phone_number(params[:msisdn]),
+      text: params[:text]
     )
+    render json: {
+      status: 200,
+    }.to_json
   end
 
   def push_message
+    job_application = JobApplication.find_by_id(params[:job_application_id])
     Message.send!(
-             employer_id: current_employe.id,
-             applicant_id: Job.find_by_id(params[:job_application_id]).applicant_id,
+             employer: current_employer,
+             applicant: job_application.applicant,
              text: params[:message]
     )
   end

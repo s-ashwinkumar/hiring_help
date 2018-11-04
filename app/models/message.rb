@@ -1,38 +1,34 @@
 class Message < ApplicationRecord
-
-  def self.client
+  belongs_to :applicant
+  belongs_to :employer
+  def self.client(current_employer)
     @client ||=  Nexmo::Client.new(api_key: current_employer.nexmo_api_key,
                                    api_secret: current_employer.nexmo_secret_id)
   end
 
-  def self.from_number
-    @from_number ||= client.numbers.first.msisdn
+  def self.from_number(current_employer)
+    @from_number ||= client(current_employer).numbers.list.numbers.first.msisdn
   end
 
   def left_or_right
     direction.downcase == 'sent' ? 'left' : 'right'
   end
 
-  def self.send!(applicant_id:, employer_id:, text:)
-    applicant = Applicant.find_by_id(to)
-    message = create!(employer_id: employer_id, applicant_id: applicant_id, message: text)
-    client.sms.send(from: employer_id, to: applicant_id, text: text )
-    send_cable(message: text,
-               direction: message.left_or_right,
-               applicant_name: applicant.full_name )
+  def self.send!(applicant:, employer:, text:)
+    message = create!(employer_id: employer.id, applicant_id: applicant.id, message: text)
+    client(employer).sms.send(from: from_number(employer), to: applicant.phone_number, text: text )
+    message.send_cable
   end
 
-  def self.receive!(employer_id:,applicant:, text:)
-    message = create!(employer_id: employer_id, applicant_id: applicant.id, message: text, direction: 'Received')
-    send_cable(message: text,
-               direction:  message.left_or_right,
-               applicant_name: applicant.full_name )
+  def self.receive!(employer:,applicant:, text:)
+    message = create!(employer_id: employer.id, applicant_id: applicant.id, message: text, direction: 'Received')
+    message.send_cable
   end
 
-  def self.send_cable(message:,direction:, applicant_name:)
+  def send_cable
     ActionCable.server.broadcast 'messages',
-                                 applicant_name: applicant_name,
+                                 applicant_name: applicant.full_name,
                                  message: message,
-                                 direction: direction
+                                 direction: left_or_right
   end
 end

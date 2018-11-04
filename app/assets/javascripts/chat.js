@@ -42,18 +42,16 @@ function sendText(message, job_application_id) {
         type: "POST",
         data: {
             message: message,
-            job_id: job_application_id
+            job_application_id: job_application_id
         },
-        success: function(resp){  location.reload();}
+        success: function(resp){  debugger; }
     });
 };
 $( document ).ready(function() {
 
     $('.send_message').click(function (e) {
-        sendText(setMessage(getMessageText()), $('#job_id').val());
+        sendText(getMessageText(), $('#job_id').val());
     });
-    $('.message_input').keyup(function (e) {
-        sendText(setMessage(getMessageText()), $('#job_id').val());
-    });
+
 
 });
