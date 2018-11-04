@@ -25,7 +25,7 @@
 			<div class="mdl-layout__header-row">
 				<!-- Title -->
 				<a href="/">
-					<span class="mdl-layout-title">Gig Castle</span>
+					<span class="mdl-layout-title"><%= image_tag("logo.png", class: "logo") %></span>
 				</a>
 				<div class="mdl-layout-spacer"></div>
 				<script type="text/javascript" src="https://appcenter.intuit.com/Content/IA/intuit.ipp.anywhere.js"></script>
@@ -61,14 +61,6 @@
 			<br>
 			
 		</header>
-
-		<div class="mdl-layout__drawer">
-			<span class="mdl-layout-title">Gig Castle</span>
-			<nav class="mdl-navigation">
-				<a class="mdl-navigation__link" href="/login">Login</a>
-				<a class="mdl-navigation__link" href="/signup">Signup </a>
-			</nav>
-		</div>
 		<%= yield %>
     </div>
 	</body>

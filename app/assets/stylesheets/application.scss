@@ -20,10 +20,21 @@
 @import "tagsinput";
 @import 'profile';
 
+.logo {
+	transform: scale(0.15) !important;
+	position: relative;
+	left: -380px;
+}
+
 .mdl-layout-title {
 	color: #ffffff !important;
 	font-size: 30px;
 }
+
+#id {
+	bottom: -20px;
+}
+
 .mdl-layout__header-row, .mdl-layout__header .mdl-layout__header--scroll {
 	background-color: #212121 !important;
 	color: #ffffff !important;
