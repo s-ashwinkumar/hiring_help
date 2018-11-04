@@ -1,0 +1,48 @@
+<%#= bootstrap_form_with(model: job, url: job_applications_path, method: :post) do |form| %>
+<!--  <div class="form-group">-->
+<%#= form.text_field :title,  placeholder: 'Job Title', class: 'form-control', readonly: true  %>
+<!--  </div>-->
+<!--  <div class="form-group">-->
+<%#= form.text_area :description ,  placeholder: 'Job Description', class: 'form-control', readonly: true %>
+<!--  </div>-->
+<!--  <div class="form-group">-->
+<%#= form.text_area :applicant_names , placeholder: 'No Applicants Yet', class: 'form-control', readonly: true %>
+<!--  </div>-->
+
+<%# end %>
+<hr>
+<br>
+<div class="container">
+  <div class="row vdivide d-flex">
+    <div class="col col-sm-6 ">
+      <%= hidden_field_tag 'job_id', job.id %>
+      <%= hidden_field_tag 'current_job_application', '' %>
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">Applicant</th>
+          <th scope="col">Accept/Decline</th>
+          <th scope="col">Chat</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% job.job_applications.each do |application| %>
+          <tr>
+            <td style='font-size: large;padding-top: 16px;'><%= application.applicant.full_name %></td>
+            <td>
+              <%= button_tag "Accept", id: "job_accept", job_application_id: application.id, class: "btn btn-sm btn-success", disabled: application.processed? %>
+              <%= button_tag "Decline", id: "job_decline", job_application_id: application.id, class: "btn btn-sm btn-danger", disabled: application.processed?%>
+            </td>
+            <td>
+              <%= button_tag "Chat",id: "enable_chat", job_application_id: application.id, class: "btn btn-primary btn-sm", disabled: application.processed?%>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col col-sm-6 justify-content-center">
+      <%= render 'chat', job: @job %>
+    </div>
+  </div>
+</div>

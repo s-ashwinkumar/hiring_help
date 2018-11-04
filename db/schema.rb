@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_03_230514) do
+ActiveRecord::Schema.define(version: 2018_11_04_112153) do
 
   create_table "applicants", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2018_11_03_230514) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "phone_number"
     t.index ["email"], name: "index_applicants_on_email", unique: true
     t.index ["reset_password_token"], name: "index_applicants_on_reset_password_token", unique: true
   end
@@ -41,6 +42,9 @@ ActiveRecord::Schema.define(version: 2018_11_03_230514) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "business_name"
+    t.string "nexmo_api_key"
+    t.string "nexmo_secret_id"
+    t.string "phone_number"
     t.index ["email"], name: "index_employers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_employers_on_reset_password_token", unique: true
   end
@@ -50,6 +54,7 @@ ActiveRecord::Schema.define(version: 2018_11_03_230514) do
     t.integer "applicant_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "status", default: "Applied"
   end
 
   create_table "jobs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -60,6 +65,15 @@ ActiveRecord::Schema.define(version: 2018_11_03_230514) do
     t.integer "location", null: false
     t.date "date", null: false
     t.integer "pay", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "message"
+    t.integer "applicant_id"
+    t.integer "employer_id"
+    t.string "direction", default: "sent"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

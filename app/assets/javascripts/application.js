@@ -18,8 +18,56 @@
 //= require bootstrap
 //= require tagsinput
 //= require bootstrap-datepicker
+//= require chat
 //= require_tree .
-
 $( document ).ready(function() {
+    $(function(){
+        // always pass csrf tokens on ajax calls
+        $.ajaxSetup({
+            headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') }
+        });
+    });
     $('.datepicker').datepicker({format: 'dd/mm/yyyy'});
+    $('#job_accept').click( function(){
+        $.ajax({
+            url: "/accept_application",
+            type: "POST",
+            data: {
+                job_application_id: this.getAttribute('job_application_id')
+            },
+            success: function(resp){ location.reload();}
+        });
+    });
+
+    $('#job_decline').click( function(){
+        var that = this;
+        $.ajax({
+            url: "/decline_application",
+            type: "POST",
+            data: {
+                job_application_id: this.getAttribute('job_application_id')
+            },
+            success: function(resp){  location.reload();}
+        });
+    });
+
+    $('#enable_chat').click( function(){
+        $('#current_job_application').val(this.getAttribute('job_application_id'))
+        $.ajax({
+            url: "/get_chat",
+            type: "GET",
+            data: {
+                job_application_id: this.getAttribute('job_application_id')
+            },
+            success: function(response){
+                $('#chat_title').text(response.applicant_name);
+
+                if(response.messages.length != 0){
+                    response.messages.forEach( function(message){
+                        setMessage(message.message, message.side);
+                    });
+                }
+            }
+        });
+    });
 });

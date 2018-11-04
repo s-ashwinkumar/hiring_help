@@ -6,5 +6,5 @@ class Employer < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :jobs
-
+  has_many :messages
 end
