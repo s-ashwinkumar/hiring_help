@@ -15,13 +15,12 @@ class JobApplicationsController < ApplicationController
   end
 
   def accept
-    # job_application.status = 'Accepted'
-    Message.testing("asdfadsf","234234")
+    job_application.status = 'Accepted'
     job_application.save!
   end
 
   def decline
-    # job_application.status = 'Declined'
+    job_application.status = 'Declined'
     job_application.save!
   end
 
