@@ -2,7 +2,7 @@
 
 class Employers::RegistrationsController < Devise::RegistrationsController
   include Accessible
-  ADDED_ATTRS = [:first_name, :last_name]
+  ADDED_ATTRS = [:first_name, :last_name, :business_name, :zip, :venmo_user_id]
 
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
