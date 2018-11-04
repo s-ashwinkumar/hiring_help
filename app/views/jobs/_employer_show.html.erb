@@ -21,18 +21,23 @@
         <thead>
         <tr>
           <th scope="col">Applicant</th>
-          <th scope="col">Accept/Decline</th>
+          <th scope="col">Actions</th>
           <th scope="col">Chat</th>
         </tr>
         </thead>
         <tbody>
         <% job.job_applications.each do |application| %>
           <tr>
-            <td style='font-size: large;padding-top: 16px;'><%= application.applicant.full_name %></td>
+            <td style='font-size: large;padding-top: 16px;'><a href="/applicants/profile"><%= application.applicant.full_name %></a></td>
             <td>
-              <%= button_tag "Accept", id: "job_accept", job_application_id: application.id, class: "btn btn-sm btn-success", disabled: application.processed? %>
-              <%= button_tag "Decline", id: "job_decline", job_application_id: application.id, class: "btn btn-sm btn-danger", disabled: application.processed?%>
-            </td>
+              <% if  application.processed? %>
+                <%= button_tag "Started", id: "job_accept", job_application_id: application.id, class: "btn btn-sm btn-success"%>
+
+            <%else %>
+                <%= button_tag "Accept", id: "job_accept", job_application_id: application.id, class: "btn btn-sm btn-success"%>
+                <%= button_tag "Decline", id: "job_decline", job_application_id: application.id, class: "btn btn-sm btn-danger"%>
+            <%end %>
+              </td>
             <td>
               <%= button_tag "Chat",id: "enable_chat", job_application_id: application.id, class: "btn btn-primary btn-sm", disabled: application.processed?%>
             </td>
