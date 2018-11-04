@@ -8,7 +8,7 @@ $(function() {
             type: 'pie'
         },
         title: {
-            text: 'Browser market shares in January, 2018'
+            text: 'Projects: Overview'
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -51,7 +51,7 @@ $(function() {
     
     $('#socialcredit').highcharts({
         chart: {
-        type: 'line'
+        type: 'spline'
     },
     title: {
         text: 'Rating History'
@@ -80,7 +80,7 @@ $(function() {
         }
     },
     series: [{
-        name: 'Social Credit',
+        name: 'Employer Evaluated',
         data: [3.3, 4.2, 4.1, 4.3, 4.4, 4.1, 4.1, 4.1, 4.3, 4.5, 4.6]
     }]
     });
@@ -93,7 +93,7 @@ $(function() {
     },
 
     title: {
-        text: 'Tokenized Skillset',
+        text: 'Stated vs. Tokenized Skillset',
         x: -80
     },
 
@@ -131,10 +131,85 @@ $(function() {
     },
 
     series: [{
-        name: 'Value',
+        name: 'Stated',
         data: [0.4, 0.5, 0.6, 0.7, 0.8],
         pointPlacement: 'on'
-    }]
+    }, 
+    {name: 'Tokenized',
+        data: [0.6, 0.2, 0.1, 0.2, 0.8],
+        pointPlacement: 'on'}]
 
     });
+
+    // $('#kernel').highcharts({
+    //      chart: {
+    //         type: 'scatter',
+    //         zoomType: 'xy'
+    //     },
+    //     title: {
+    //         text: 'Gig-Castle Score vs. Employer Evaluated '
+    //     },
+    //     subtitle: {
+    //         text: ''
+    //     },
+    //     xAxis: {
+    //         title: {
+    //             enabled: true,
+    //             text: ''
+    //         },
+    //         startOnTick: true,
+    //         endOnTick: true,
+    //         showLastLabel: true
+    //     },
+    //     yAxis: {
+    //         title: {
+    //             text: ''
+    //         }
+    //     },
+    //     legend: {
+    //         layout: 'vertical',
+    //         align: 'left',
+    //         verticalAlign: 'top',
+    //         x: 100,
+    //         y: 70,
+    //         floating: true,
+    //         backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF',
+    //         borderWidth: 1
+    //     },
+    //     plotOptions: {
+    //         scatter: {
+    //             marker: {
+    //                 radius: 5,
+    //                 states: {
+    //                     hover: {
+    //                         enabled: true,
+    //                         lineColor: 'rgb(100,100,100)'
+    //                     }
+    //                 }
+    //             },
+    //             states: {
+    //                 hover: {
+    //                     marker: {
+    //                         enabled: false
+    //                     }
+    //                 }
+    //             },
+    //             tooltip: {
+    //                 headerFormat: '<b>{series.name}</b><br>',
+    //                 pointFormat: '{point.x}, {point.y}'
+    //             }
+    //         }
+    //     },
+
+    //     credits: {
+    //         enabled: false
+    //     },
+        
+    //     series: [{
+    //         name: 'scoring diff',
+    //         color: 'rgba(223, 83, 83, .5)',
+    //         data: [[3.3,2], [2.2, 3.3], [2,2.3], [4,4.3], [3,3.5], [4,4.4]]
+
+    //     }]
+    // });
 });
