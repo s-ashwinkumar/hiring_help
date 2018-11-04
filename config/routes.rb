@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   post 'job_applications', to: 'job_applications#create', as: :job_applications
 
 
-  get 'applicants/profile', to: 'applicants#profile', as: 'applicant_profile'
+  get 'applicants/profile', to: 'applicant#applicant_profile', as: 'applicant_profile'
+  get 'employer/profile', to: 'employer#employer_profile', as: 'employer_profile'
+
   root :to => "application#index"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
