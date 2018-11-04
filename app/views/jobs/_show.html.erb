@@ -1,27 +1,29 @@
-<%= bootstrap_form_with(model: job, url: job_applications_path, method: :post) do |form| %>
-  <div class="form-group">
-    <%= form.text_field :title,  placeholder: 'Job Title', class: 'form-control', readonly: true  %>
-  </div>
-  <div class="form-group">
-    <%= form.text_area :description ,  placeholder: 'Job Description', class: 'form-control', readonly: true %>
-  </div>
-  <% if current_employer %>
-    <div class="form-group">
-      <%= form.text_area :applicant_names , placeholder: 'No Applicants Yet', class: 'form-control', readonly: true %>
-    </div>
-  <% else %>
-
-    <%= form.hidden_field :job_id, value: job.id %>
-
-    <div class="form-group">
-      <%= form.text_field :employer_name , class: 'form-control', readonly: true %>
-    </div>
-    <% unless current_applicant.already_applied?(job) %>
+<div class="row d-flex justify-content-center">
+  <div class="col-sm-4 col-sm-offset-4">
     <br>
-    <br>
+    <%= render 'shared/messages' %>
+
+    <hr>
+    <%= bootstrap_form_with(model: job, url: job_applications_path, method: :post) do |form| %>
       <div class="form-group">
-        <%= form.submit "Apply", class: "mdl-button mdl-js-button"%>
+        <%= form.text_field :title,  placeholder: 'Job Title', class: 'form-control', readonly: true  %>
       </div>
+      <div class="form-group">
+        <%= form.text_area :description ,  placeholder: 'Job Description', class: 'form-control', readonly: true %>
+      </div>
+      <%= form.hidden_field :job_id, value: job.id %>
+
+      <div class="form-group">
+        <%= form.text_field :employer_name , class: 'form-control', readonly: true %>
+      </div>
+      <% unless current_applicant.get_status_by_job(job) %>
+        <div class="form-group">
+          <%= form.submit "Apply", class: "btn btn-primary btn-block btn-lg" %>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
-<% end %>
+
+
+    <%= link_to 'Back', jobs_path %>
+  </div>
+</div>

@@ -2,6 +2,7 @@ class Job < ApplicationRecord
   acts_as_taggable
   belongs_to :employer
   has_and_belongs_to_many :applicants, join_table: 'job_applications', dependent: :destroy
+  has_many :job_applications
   validates :title, presence: true
   validates :description, presence: true
 

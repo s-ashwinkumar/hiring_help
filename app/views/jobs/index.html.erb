@@ -35,7 +35,7 @@
             <td colspan="1"><%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           <% else %>
             <td colspan="1"><%= job.employer_name %></td>
-            <td colspan="1"><%= get_badge(job) %></td>
+            <td colspan="1"><%= get_badge(job.id) %></td>
           <% end %>
         </tr>
       <% end %>

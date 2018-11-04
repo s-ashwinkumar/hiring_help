@@ -23,7 +23,7 @@
 
 
   <div class="form-group">
-    <%= form.text_field :tag_list, label: 'Tags', class: 'form-control', 'data-role'=>'tagsinput' %>
+    <%= form.text_field :tag_list, value: form.object.tag_list.join(','),  label: 'Tags', class: 'form-control', 'data-role'=>'tagsinput' %>
   </div>
 
   <%= form.hidden_field :employer_id, value: job.employer_id %>

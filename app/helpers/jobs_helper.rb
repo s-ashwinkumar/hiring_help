@@ -1,6 +1,12 @@
 module JobsHelper
-  def get_badge(job)
-    badge_type, text = current_applicant.already_applied?(job) ? ["success","Applied"] : ["info","Open"]
-    "<span class='badge badge-pill badge-#{badge_type}'>#{text}</span>".html_safe
+  def get_badge(job_id)
+    badge_map = {
+      "Applied" => "primary",
+      "Accepted" => "success",
+      "Declined" => "danger",
+      "Open" => "info"
+    }
+    status = current_applicant.get_status_by_job(job_id) || "Open"
+    "<h5><span class='badge badge-#{badge_map[status]}'>#{status}</span></h5>".html_safe
   end
 end

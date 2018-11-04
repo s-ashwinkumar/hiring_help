@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  mount ActionCable.server => '/cable'
+
   resources :jobs
   devise_for :applicants, controllers: {
     registrations: 'applicants/registrations',
@@ -13,6 +15,10 @@ Rails.application.routes.draw do
   get 'employer/profile', to: 'employer#employer_profile', as: 'employer_profile'
   get '/login', to: 'application#login', as: 'login'
   get '/signup', to: 'application#signup', as: 'signup'
+  post 'accept_application', to: 'job_applications#accept'
+  post 'decline_application', to: 'job_applications#decline'
+  get 'get_chat', to: 'messages#get_messages'
+  post 'send_message', to: 'messages#push_message'
   root :to => "application#index"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

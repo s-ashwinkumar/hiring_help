@@ -7,9 +7,10 @@ class Applicant < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_and_belongs_to_many :jobs, join_table: 'job_applications', dependent: :destroy
+  has_many :job_applications
 
 
-  def already_applied?(job)
-    jobs.include?(job)
+  def get_status_by_job(job_id)
+    job_applications.where(job_id: job_id).first.try(:status)
   end
 end
