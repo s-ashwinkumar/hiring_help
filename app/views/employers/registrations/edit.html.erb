@@ -33,12 +33,14 @@
         <p class="form-text text-muted"><small>We need your current password to confirm your changes</small></p>
       </div>
 
+      <br>
+      <br>
       <div class="form-group">
-        <%= f.submit "Save Changes", class: 'btn btn-lg btn-block btn-primary' %>
+        <%= f.submit "Save Changes", class: "mdl-button mdl-js-button"%>
       </div>
     <% end %>
     <hr>
 
-    <p class="text-center"><%= link_to "Deactivate my account", registration_path(resource_name), data: { confirm: "Are you sure? You cannot undo this." }, method: :delete %></p>
+    <p><%= link_to "Deactivate my account", registration_path(resource_name), data: { confirm: "Are you sure? You cannot undo this." }, method: :delete %></p>
   </div>
 </div>

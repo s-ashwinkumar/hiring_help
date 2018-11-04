@@ -1,37 +1,73 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>JobPosts</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+	<head>
+		<title>Gig Castle</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<%= csrf_meta_tags %>
+		<%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+		<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+		<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+		<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+		<script src="https://code.highcharts.com/highcharts.js"></script>
+		<script src="https://code.highcharts.com/highcharts-more.js"></script>
 
-  <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <%= link_to 'Kernel', root_path, class: 'navbar-brand' %>
+	</head>
+	<body>
+		<div class="mdl-layout mdl-js-layout">
+		<header>
+			<div class="mdl-layout__header-row">
+				<!-- Title -->
+				<a href="/">
+					<span class="mdl-layout-title">Gig Castle</span>
+				</a>
+				<div class="mdl-layout-spacer"></div>
+				<script type="text/javascript" src="https://appcenter.intuit.com/Content/IA/intuit.ipp.anywhere.js"></script>
 
-    <% if user_signed_in? %>
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <%= link_to 'Jobs', jobs_path, class: 'nav-link', method: :get %>
-        </li>
-      </ul>
-      <ul class="navbar-nav ml-md-auto">
-        <li class="nav-item">
-          <%= link_to "Sign Out", destroy_user_session_path, class: 'nav-link', method: :delete %>
-        </li>
-        <li>
-          <%= link_to("#{current_user.first_name}", applicant_profile_path , class: 'nav-link', method: :get) %>
-        </li>
-      </ul>
-    <% end %>
-  </nav>
-  <%= yield %>
-  </body>
+				<!-- configure the Intuit object: 'grantUrl' is a URL in your application which kicks off the flow, see below -->
+				<script>
+				intuit.ipp.anywhere.setup({menuProxy: '/path/to/blue-dot', grantUrl: '/path/to/your-flow-start'});
+				</script>
+
+				<!-- this will display a button that the user clicks to start the flow -->
+				<ipp:connectToIntuit></ipp:connectToIntuit>
+				<!-- Add spacer, to align navigation to the right -->
+				<div class="mdl-layout-spacer"></div>
+				<!-- Navigation -->
+				<nav class="mdl-navigation">
+										    <script type="text/javascript" src="https://appcenter.intuit.com/Content/IA/intuit.ipp.anywhere.js"></script>
+					    <script> intuit.ipp.anywhere.setup({menuProxy: '/path/to/blue-dot', grantUrl: '/path/to/your-flow-start'});</script>
+
+					<% if user_signed_in? %>
+					    <%= link_to 'Jobs', jobs_path, class: 'nav-link', method: :get %>
+					    <%= link_to "Sign Out", destroy_user_session_path, class: 'mdl-navigation__link', method: :delete %>
+					    <% if applicant_signed_in? %>
+					    	<%= link_to("#{current_user.first_name}", applicant_profile_path , class: 'mdl-navigation__link', method: :get) %>
+					    <% else %>
+					         <%= link_to("#{current_user.first_name}", employer_profile_path , class: 'mdl-navigation__link', method: :get) %>
+					    <% end  %>
+					<% else %>
+						<a class="mdl-navigation__link" href="/login">Login</a>
+						<a class="mdl-navigation__link" href="/signup">Signup</a>
+					<% end %>
+				</nav>
+			</div>
+			<br>
+			
+		</header>
+
+		<div class="mdl-layout__drawer">
+			<span class="mdl-layout-title">Gig Castle</span>
+			<nav class="mdl-navigation">
+				<a class="mdl-navigation__link" href="/login">Login</a>
+				<a class="mdl-navigation__link" href="/signup">Signup </a>
+			</nav>
+		</div>
+		<%= yield %>
+	</body>
 </html>

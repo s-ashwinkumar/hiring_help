@@ -17,8 +17,10 @@
       <%= form.text_field :employer_name , class: 'form-control', readonly: true %>
     </div>
     <% unless current_applicant.already_applied?(job) %>
+    <br>
+    <br>
       <div class="form-group">
-        <%= form.submit "Apply", class: "btn btn-primary btn-block btn-lg" %>
+        <%= form.submit "Apply", class: "mdl-button mdl-js-button"%>
       </div>
     <% end %>
   <% end %>

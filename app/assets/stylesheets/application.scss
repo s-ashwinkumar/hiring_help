@@ -16,5 +16,54 @@
  */
 @import "bootstrap";
 @import "rails_bootstrap_forms";
+
 @import "tagsinput";
 
+
+@import 'profile';
+
+.mdl-layout-title {
+	color: #ffffff !important;
+	font-size: 30px;
+}
+.mdl-layout__header-row, .mdl-layout__header .mdl-layout__header--scroll {
+	background-color: #212121 !important;
+	color: #ffffff !important;
+}
+
+.mdl-layout__content {
+	margin: 50px 0px 50px 100px !important;
+}
+
+.mdl-layout__header-row{
+	background-color: #000000 !important;
+}
+
+#ccc {
+	font-size: 80px;
+	font-weight: bolder;
+	line-height: 88px;
+}
+
+.log {
+	font-size: 50px;
+	font-weight: bold;
+	line-height: 50px;
+
+}
+a {
+	text-decoration: none !important;
+}
+
+a:hover {
+	color: #830000;
+}
+
+.mdl-button {
+	background-color: #000000 !important;
+	color: #ffffff !important;
+}
+
+.btn .btn-primary .btn-block .btn-lg {
+	background-color: #212121 !important;
+}
